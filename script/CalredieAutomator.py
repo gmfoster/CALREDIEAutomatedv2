@@ -50,7 +50,7 @@ class CalredieAutomator:
 
         # Initialize Options
         self.options = Options()
-        # self.options.headless = True # headless = True hides the chrome browser running in the background, set this to
+        self.options.headless = True # headless = True hides the chrome browser running in the background, set this to
         # false if you want to watch the script step through the website
         prefs = {'download.default_directory': download_directory}
         self.options.add_experimental_option('prefs', prefs)
@@ -61,7 +61,6 @@ class CalredieAutomator:
 
         # Initialize webdriver
         self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=self.options)
-        # not sure how this will work on windows
 
         # if page takes longer than 15 seconds to load it times out...
         self.driver.set_page_load_timeout(15)
@@ -296,7 +295,7 @@ class CalredieAutomator:
         r_fileTSV = download_directory + r'/UDF_Disease_Data.tsv'
         w_fileTSV = download_directory + r'/UDF_Disease_Data.tsv'
         UDF_read = pd.read_csv(r_fileTSV, sep='\t')
-        print(UDF_read.head(10))
+
 
         with open(w_fileTSV, 'w') as write_tsv:
             write_tsv.write(UDF_read.to_csv(sep='\t', index=False, encoding='latin-1'))
